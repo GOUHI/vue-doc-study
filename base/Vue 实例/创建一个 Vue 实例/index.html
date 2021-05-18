@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>创建一个 Vue 实例</title>
+</head>
+<body>
+  <div id="app">
+    <p>{{foo}}</p>
+
+    <button v-on:click="foo = baz">尝试改版foo值</button>
+  </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+  // // 创建的数据对象
+  // var data = {a:1}
+
+  // // 将创建的数据对象加入到vue的实例中去
+  // var vm = new Vue({
+  //   data:data
+  // })
+
+  // vm.a = data.a
+
+  // 使用Object.ferrze() 会阻止双向绑定
+  var obj = {foo:'bar'}
+  
+  Object.freeze(obj)
+
+  new Vue({
+    el:'#app',
+    data:obj
+  })
+</script>
+</html>
