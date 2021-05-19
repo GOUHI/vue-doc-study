@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>组件基础</title>
+</head>
+<body>
+  
+  <div id="example-1">
+    <!-- 基本示例 -->
+    <div id="components-demo">
+      <button-counter></button-counter>
+    </div>
+    <!-- 组件复用 -->
+    <div>
+      <button-counter></button-counter>
+      <button-counter></button-counter>
+      <button-counter></button-counter>
+    </div>
+    <!-- 通过 Prop 向子组件传递数据 -->
+    <div>
+      <blog-post 
+        v-for="post in posts" 
+        :key="post.id" 
+        :post="post">
+      </blog-post>
+    </div>
+  </div>
+
+  <!-- 监听子组件事件 -->
+  <div id="blog-posts-events-demo">
+    <div :style="{ fontSize: postFontSize + 'em' }">
+      <blog-post
+        v-for="post in posts"
+        v-bind:key="post.id"
+        v-bind:post="post"
+        v-on:enlarge-text="postFontSize += 0.1"
+      ></blog-post>
+    </div>
+  </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+  // 定义一个名为 button-counter 的新组件
+  Vue.component('button-counter', {
+  data: function () {
+    return {
+      count: 0
+    }
+  },
+  template: '<button v-on:click="count++">You clicked me {{ count }} times.</button>'
+})
+
+  Vue.component('blog-post', {
+    props: ['post'],
+    template: `
+      <div class="blog-post">
+        <h3>{{ post.title }}</h3>
+        <button v-on:click="$emit('enlarge-text')">
+          Enlarge text
+        </button>
+        <div v-html="post.content"></div>
+      </div>
+    `
+  })
+
+  new Vue({
+    el: '#blog-posts-events-demo',
+    data: {
+      posts: [/* ... */],
+      postFontSize: 1
+    }
+  })
+
+  var example1 = new Vue({
+    el: '#example-1',
+    data: {
+      posts:[
+        {id:0,title:'My journey with Vue',content:'111'},
+        {id:1,title:'Blogging with Vue',content:'111'},
+        {id:2,title:'Why Vue is so fun',content:'111'}
+      ]
+    }
+  })
+</script>
+</html>

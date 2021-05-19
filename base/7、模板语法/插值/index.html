@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>插值</title>
+</head>
+<body>
+  <div id="app">
+    <!-- 文本 -->
+    <span>Message:{{msg}}</span>
+    <br>
+    <span v-once>这个将不会改变:{{msg}}</span>
+
+    <!-- 原始HTML -->
+    <p>Using mustaches: {{ rawHtml }}</p>
+    <p>Using v-html directive: <span v-html="rawHtml"></span></p> 
+
+    <!-- Attribute -->
+    <button v-bind:disabled="isButtonDisabled">Button</button>
+
+    <!-- 使用JavaScripty表达式 -->
+    
+  </div>
+</body>
+<!-- 开发环境版本，包含了有帮助的命令行警告 -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+  var vm = new Vue({
+    el:'#app',
+    data(){
+      return{
+        msg:'消息',
+        rawHtml:'<span style="color:red">This should be red.</span>',
+        isButtonDisabled:false
+      }
+    }
+  })
+</script>
+</html>

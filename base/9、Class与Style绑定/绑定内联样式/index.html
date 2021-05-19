@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>绑定内联样式</title>
+</head>
+<body>
+  <div id="app" v-bind:style="{color:activeColor,fontSize:fontSize + 'px'}">
+    绑定内联样式
+    <div v-bind:style="styleObject">
+      直接绑定对象模式
+    </div>
+    <div v-bind:style="[baseStyle,overridingStyle]">
+      数组语法
+    </div>
+    <div :style="{display:['-webkit-box','-ms-flexbox','flex']}">
+      多重值
+    </div>
+  </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+  var vm = new Vue({
+    el:'#app',
+    data(){
+      return{
+        activeColor:'red',
+        fontSize:30,
+        styleObject:{
+          color:'red',
+          fontSize:'13px',
+        }
+      }
+    }
+  })
+</script>
+</html>

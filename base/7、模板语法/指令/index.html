@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>指令</title>
+</head>
+<body>
+  <div id="app">
+    <p v-if="seen">现在你看到我了</p>
+
+    <!-- 参数 -->
+    <a v-bind:href="url">...</a>
+
+    <a v-on:click="doSomething">...</a>
+
+    <!-- 动态参数 -->
+    <a v-bind:[attributename]="url">动态参数</a>
+  </div>
+</body>
+<!-- 开发环境版本，包含了有帮助的命令行警告 -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+  var vm = new Vue({
+    el:'#app',
+    data(){
+      return{
+        seen:true,
+        url:'http://www.baidu.com',
+        attributename:'href'
+      }
+    },
+    methods:{
+      doSomething(){
+        alert('this is do something')
+      }
+    }
+  })
+</script>
+</html>
